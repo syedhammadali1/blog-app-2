@@ -1,8 +1,8 @@
-export const UnAuthenticatedRoutes = {
+export const UnAuthenticatedRoutesConstant = {
     Login : '/login',
     Register : '/register'
 }
-export const AuthenticatedRoutes = {
+export const AuthenticatedRoutesConstant = {
     Home : '/',
     User : '/users',
     Post : '/posts',

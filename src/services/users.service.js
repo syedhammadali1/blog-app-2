@@ -8,8 +8,8 @@ const userServiceUrl = {
 
 const Login = (data) => {
     const response = ApiService.post(userServiceUrl.Login,data);
-    console.log(response);
-    // return response;
+    // console.log(response);
+    return response;
 }
 
 

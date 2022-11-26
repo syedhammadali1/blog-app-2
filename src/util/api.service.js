@@ -1,13 +1,14 @@
 import {
     create
 } from "apisauce";
+import AuthService from "../services/auth.service";
 
 
 
-console.log(process.env.REACT_APP_API_URL);
+// console.log();
 // define the api
 const apiInstance = create({
-    baseURL: 'https://blog-api-testing.squadcodersdev.com/api',
+    baseURL: process.env.REACT_APP_API_URL,
 });
 
 
@@ -16,6 +17,13 @@ const post = (url, data, config) => {
     // return handleReponse(response);
     return response;
 };
+
+
+apiInstance.addRequestTransform((request) => {
+    if(AuthService.isTokenExist()){
+        request.headers["Authorization"] = `Bearer ${AuthService.getTokenExist()}`
+    }
+})
 
 export const ApiService = {
     // get,

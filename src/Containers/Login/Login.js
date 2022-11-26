@@ -1,22 +1,32 @@
 import React from 'react';
 import { Button, Checkbox, Form, Input } from 'antd';
 import { userServices } from '../../services/users.service';
+import { userInfo } from '../../util/constant';
+import "./Login.css";
 const Login = () => {
-  const onFinish = (values) => {
-    userServices.Login(values)
-    console.log('Success:', values);
+  const onFinish = async (values) => {
+    const { ok,data } = await userServices.Login(values)
+
+    if(ok){
+      localStorage.setItem(userInfo.TOKEN,data?.results?.token)
+      localStorage.setItem(userInfo.USERNAME,data?.results?.username)
+    }
+
   };
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
   return (
+    <div className='custom-login-container'>
+
     <Form
       name="basic"
+      className='text-center mx-0 my-auto'
       labelCol={{
-        span: 8,
+        span: 4,
       }}
       wrapperCol={{
-        span: 16,
+        span: 10,
       }}
       initialValues={{
         remember: true,
@@ -73,6 +83,9 @@ const Login = () => {
         </Button>
       </Form.Item>
     </Form>
+
+    </div>
+
   );
 };
 export default Login;
