@@ -18,15 +18,22 @@ const post = (url, data, config) => {
     return response;
 };
 
+const get = (url, queryParams, config) => {
+    const response = apiInstance.get(url, queryParams, config);
+    // return handleReponse(response);
+    return response;
+
+  };
+
 
 apiInstance.addRequestTransform((request) => {
     if(AuthService.isTokenExist()){
-        request.headers["Authorization"] = `Bearer ${AuthService.getTokenExist()}`
+        request.headers["Authorization"] = `Bearer ${AuthService.getToken()}`
     }
 })
 
 export const ApiService = {
-    // get,
+    get,
     post,
     // put,
     // patch,

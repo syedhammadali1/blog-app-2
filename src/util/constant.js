@@ -5,6 +5,7 @@ export const UnAuthenticatedRoutesConstant = {
 export const AuthenticatedRoutesConstant = {
     Home : '/',
     User : '/users',
+    EditUser : '/users/edit/:id',
     Post : '/posts',
 }
 
